@@ -1,7 +1,16 @@
 import { createGlobalStyle, css } from "styled-components"
 
 export const GlobalStyles = createGlobalStyle`
-${() => css`
+${({ theme }) => css`
+  * {
+    box-sizing: border-box;
+
+    margin: 0;
+    padding: 0;
+
+    font-family: Roboto, sans-serif;
+  }
+
   html,
   body,
   #root {
@@ -11,11 +20,9 @@ ${() => css`
     -moz-osx-font-smoothing: grayscale;
   }
 
-  * {
-    box-sizing: border-box;
-
-    margin: 0;
-    padding: 0;
+  body {
+    background: ${theme.background};
+    color: ${theme.text};
   }
 
   button {
