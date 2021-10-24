@@ -1,5 +1,5 @@
-import bannerImg from "@assets/banner-girl.png"
 import logoImg from "@assets/logo.svg"
+import { LoginBox } from "@components/LoginBox"
 import { MessageList } from "@components/MessageList"
 import styled from "styled-components"
 
@@ -12,9 +12,7 @@ export const PageHome = ({ ...props }: PageHomeProps) => {
         <LogoImg src={logoImg} alt="logo" />
         <MessageList />
       </Main>
-      <Aside>
-        <BannerImg src={bannerImg} alt="banner" />
-      </Aside>
+      <LoginBox />
     </StyledPageHome>
   )
 }
@@ -54,6 +52,3 @@ type AsideProps = {}
 const Aside = styled.aside<AsideProps>`
   grid-area: aside;
 `
-
-type BannerImgProps = {}
-const BannerImg = styled.img<BannerImgProps>``
