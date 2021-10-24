@@ -20,6 +20,7 @@ export default defineConfig({
       "@utils": path.resolve(__dirname, "src/utils"),
       "@assets": path.resolve(__dirname, "src/assets"),
       "@redux": path.resolve(__dirname, "src/redux"),
+      "@services": path.resolve(__dirname, "src/services"),
     },
   },
 })

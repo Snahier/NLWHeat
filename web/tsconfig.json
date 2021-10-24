@@ -23,7 +23,8 @@
       "@styles/*": ["styles/*"],
       "@utils/*": ["utils/*"],
       "@assets/*": ["assets/*"],
-      "@redux/*": ["redux/*"]
+      "@redux/*": ["redux/*"],
+      "@services/*": ["services/*"]
     }
   },
   "include": ["./src"]
