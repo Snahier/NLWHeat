@@ -1,17 +1,28 @@
 import { Avatar } from "@components/Avatar"
 import styled from "styled-components"
 
-interface MessageProps {}
+type IUser = {
+  id: string
+  avatar_url: string
+  name: string
+}
 
-export const Message = ({ ...props }: MessageProps) => {
+type IMessage = {
+  id: string
+  text: string
+  user: IUser
+}
+
+interface MessageProps {
+  message: IMessage
+}
+
+export const Message = ({ message, ...props }: MessageProps) => {
   return (
     <StyledMessage {...props}>
-      <MessageText>
-        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quam excepturi labore ea voluptas quod ullam ad
-        doloremque alias! Maxime sed beatae magni ad in itaque molestiae non alias recusandae pariatur.
-      </MessageText>
-      <Avatar src={"https://avatars.githubusercontent.com/snahier"} />
-      <UserName>Snahier</UserName>
+      <MessageText>{message.text}</MessageText>
+      <Avatar src={message.user.avatar_url} alt={message.user.name} />
+      <UserName>{message.user.name}</UserName>
     </StyledMessage>
   )
 }

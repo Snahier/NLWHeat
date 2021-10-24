@@ -2,12 +2,13 @@ import styled, { css } from "styled-components"
 
 interface AvatarProps {
   src: string
+  alt?: string
 }
 
-export const Avatar = ({ src, ...props }: AvatarProps) => {
+export const Avatar = ({ src, alt, ...props }: AvatarProps) => {
   return (
     <StyledAvatar {...props}>
-      <Image src={src} alt="" />
+      <Image src={src} alt={alt} />
     </StyledAvatar>
   )
 }
