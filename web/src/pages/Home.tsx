@@ -1,8 +1,7 @@
-import styled from "styled-components"
-import logoImg from "@assets/logo.svg"
 import bannerImg from "@assets/banner-girl.png"
-import { Avatar } from "@components/Avatar"
-import { Message } from "@components/Message"
+import logoImg from "@assets/logo.svg"
+import { MessageList } from "@components/MessageList"
+import styled from "styled-components"
 
 interface PageHomeProps {}
 
@@ -11,7 +10,7 @@ export const PageHome = ({ ...props }: PageHomeProps) => {
     <StyledPageHome {...props}>
       <Main>
         <LogoImg src={logoImg} alt="logo" />
-        <Message />
+        <MessageList />
       </Main>
       <Aside>
         <BannerImg src={bannerImg} alt="banner" />
@@ -41,6 +40,7 @@ const Main = styled.main<MainProps>`
   grid:
     "logo    "
     "messages" 1fr;
+  align-items: center;
 
   margin-top: 2rem;
 `
