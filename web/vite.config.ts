@@ -21,6 +21,7 @@ export default defineConfig({
       "@assets": path.resolve(__dirname, "src/assets"),
       "@redux": path.resolve(__dirname, "src/redux"),
       "@services": path.resolve(__dirname, "src/services"),
+      "@contexts": path.resolve(__dirname, "src/contexts"),
     },
   },
 })
