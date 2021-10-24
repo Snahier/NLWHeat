@@ -2,6 +2,7 @@ import styled from "styled-components"
 import logoImg from "@assets/logo.svg"
 import bannerImg from "@assets/banner-girl.png"
 import { Avatar } from "@components/Avatar"
+import { Message } from "@components/Message"
 
 interface PageHomeProps {}
 
@@ -10,6 +11,7 @@ export const PageHome = ({ ...props }: PageHomeProps) => {
     <StyledPageHome {...props}>
       <Main>
         <LogoImg src={logoImg} alt="logo" />
+        <Message />
       </Main>
       <Aside>
         <BannerImg src={bannerImg} alt="banner" />
