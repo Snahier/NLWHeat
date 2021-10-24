@@ -1,6 +1,6 @@
+import { GlobalStyles } from "@styles/GlobalStyles"
+import { defaultTheme } from "@styles/theme"
 import styled, { ThemeProvider } from "styled-components"
-import { GlobalStyles } from "./styles/GlobalStyles"
-import { defaultTheme } from "./styles/theme"
 
 interface AppProps {}
 
