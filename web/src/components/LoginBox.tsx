@@ -37,6 +37,8 @@ const StyledLoginBox = styled.div<StyledLoginBoxProps>`
   align-content: start;
   justify-items: center;
 
+  height: 100%;
+
   background: #17171a;
 
   a {
