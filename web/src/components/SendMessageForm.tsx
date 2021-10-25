@@ -3,22 +3,39 @@ import { SendMessageInput } from "@components/SendMessageInput"
 import { AuthContext } from "@contexts/auth"
 import { Github } from "@styled-icons/bootstrap"
 import { LogOut } from "@styled-icons/boxicons-regular"
-import { FormEvent, HTMLAttributes, useContext } from "react"
+import { ChangeEvent, FormEvent, HTMLAttributes, useContext, useState } from "react"
 import styled, { css } from "styled-components"
 import sealImg from "@assets/seal.svg"
+import { api } from "@services/api"
+
+const useMessage = () => {
+  const [message, setMessage] = useState("")
+
+  const handleMessageChange = (event: ChangeEvent<HTMLTextAreaElement>) => {
+    setMessage(event.target.value)
+  }
+
+  const sendMessage = async (event: FormEvent) => {
+    event.preventDefault()
+
+    if (!message.trim()) return
+    await api.post("/messages", { message })
+
+    setMessage("")
+  }
+
+  return { message, handleMessageChange, sendMessage }
+}
 
 interface SendMessageFormProps extends HTMLAttributes<HTMLFormElement> {}
 
 export const SendMessageForm = ({ ...props }: SendMessageFormProps) => {
   const { user, signOut } = useContext(AuthContext)
-
-  const handleSubmit = (event: FormEvent) => {
-    event.preventDefault()
-  }
+  const { message, sendMessage, handleMessageChange } = useMessage()
 
   if (!user) return null
   return (
-    <StyledSendMessageForm {...props} onSubmit={handleSubmit}>
+    <StyledSendMessageForm {...props} onSubmit={sendMessage}>
       <SealImg src={sealImg} alt="seal" />
       <SignOutButton onClick={signOut}>
         <LogOut size="2rem" />
@@ -33,7 +50,7 @@ export const SendMessageForm = ({ ...props }: SendMessageFormProps) => {
         {user.login}
       </GithubProfileLink>
 
-      <SendMessageInput style={{ marginTop: "3rem" }} />
+      <SendMessageInput value={message} onChange={handleMessageChange} style={{ marginTop: "3rem" }} />
     </StyledSendMessageForm>
   )
 }

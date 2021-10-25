@@ -1,13 +1,16 @@
-import { HTMLAttributes } from "react"
+import { ChangeEvent, HTMLAttributes } from "react"
 import styled from "styled-components"
 
-interface SendMessageInputProps extends HTMLAttributes<HTMLDivElement> {}
+interface SendMessageInputProps extends HTMLAttributes<HTMLDivElement> {
+  value: string
+  onChange: (event: ChangeEvent<any>) => void
+}
 
-export const SendMessageInput = ({ ...props }: SendMessageInputProps) => {
+export const SendMessageInput = ({ value, onChange, ...props }: SendMessageInputProps) => {
   return (
     <StyledSendMessageInput {...props}>
       <Label>Mensagem</Label>
-      <TextArea placeholder="Qual sua expectativa para o evento?" rows={10}></TextArea>
+      <TextArea placeholder="Qual sua expectativa para o evento?" value={value} onChange={onChange} rows={10} />
       <SendButton>enviar mensagem</SendButton>
     </StyledSendMessageInput>
   )
