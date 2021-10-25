@@ -18,6 +18,8 @@ export const App = ({ ...props }: AppProps) => {
 
 type StyledAppProps = {}
 const StyledApp = styled.div<StyledAppProps>`
+  position: relative;
+
   display: grid;
   min-height: 100vh;
 `
