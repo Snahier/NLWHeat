@@ -1,6 +1,7 @@
 import { Message } from "@components/Message"
 import { api } from "@services/api"
 import { HTMLAttributes, useEffect, useState } from "react"
+import { io } from "socket.io-client"
 import styled from "styled-components"
 
 type IUser = {
@@ -15,8 +16,26 @@ type IMessage = {
   user: IUser
 }
 
+const messagesQueue: IMessage[] = []
+
+const socket = io("http://localhost:4000")
+
+socket.on("new_message", (newMessage: IMessage) => {
+  messagesQueue.push(newMessage)
+})
+
 const useMessageList = () => {
   const [messages, setMessages] = useState<IMessage[]>([])
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      if (messagesQueue.length > 0) {
+        setMessages((prev) => [messagesQueue[0], prev[0], prev[1]].filter(Boolean))
+
+        messagesQueue.shift()
+      }
+    }, 3000)
+  }, [])
 
   useEffect(() => {
     ;(async () => {
