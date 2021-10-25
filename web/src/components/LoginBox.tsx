@@ -2,54 +2,14 @@ import styled, { css } from "styled-components"
 import bannerImg from "@assets/banner-girl.png"
 import sealImg from "@assets/seal.svg"
 import { Github } from "styled-icons/bootstrap"
-import { useEffect } from "react"
+import { useContext, useEffect } from "react"
 import { api } from "@services/api"
-
-type IAuthResponse = {
-  token: string
-  user: {
-    id: string
-    avatar_url: string
-    name: string
-    login: string
-  }
-}
-
-const useSignIn = () => {
-  const signInUrl = `https://github.com/login/oauth/authorize?scope=user&client_id=80ad4853b02822fc5e89`
-
-  const signIn = async (githubCode: string) => {
-    const response = await api.post<IAuthResponse>("/authenticate", {
-      code: githubCode,
-    })
-
-    const { token, user } = response.data
-
-    localStorage.setItem("@dowhile:token", token)
-
-    console.log(user)
-  }
-
-  useEffect(() => {
-    const url = window.location.href
-    const hasGithubCode = url.includes("?code=")
-
-    if (hasGithubCode) {
-      const [urlWithoutCode, githubCode] = url.split("?code=")
-
-      window.history.pushState({}, "", urlWithoutCode)
-
-      signIn(githubCode)
-    }
-  }, [])
-
-  return { signInUrl }
-}
+import { AuthContext } from "@contexts/auth"
 
 interface LoginBoxProps {}
 
 export const LoginBox = ({ ...props }: LoginBoxProps) => {
-  const { signInUrl } = useSignIn()
+  const { signInUrl } = useContext(AuthContext)
 
   return (
     <StyledLoginBox {...props}>
