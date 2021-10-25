@@ -1,12 +1,11 @@
-import styled, { css } from "styled-components"
 import bannerImg from "@assets/banner-girl.png"
 import sealImg from "@assets/seal.svg"
-import { Github } from "styled-icons/bootstrap"
-import { useContext, useEffect } from "react"
-import { api } from "@services/api"
 import { AuthContext } from "@contexts/auth"
+import { HTMLAttributes, useContext } from "react"
+import styled, { css } from "styled-components"
+import { Github } from "styled-icons/bootstrap"
 
-interface LoginBoxProps {}
+interface LoginBoxProps extends HTMLAttributes<HTMLDivElement> {}
 
 export const LoginBox = ({ ...props }: LoginBoxProps) => {
   const { signInUrl } = useContext(AuthContext)

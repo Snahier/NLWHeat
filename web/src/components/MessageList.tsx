@@ -1,6 +1,6 @@
 import { Message } from "@components/Message"
 import { api } from "@services/api"
-import { useEffect, useState } from "react"
+import { HTMLAttributes, useEffect, useState } from "react"
 import styled from "styled-components"
 
 type IUser = {
@@ -28,7 +28,7 @@ const useMessageList = () => {
   return { messages }
 }
 
-interface MessageListProps {}
+interface MessageListProps extends HTMLAttributes<HTMLDivElement> {}
 
 export const MessageList = ({ ...props }: MessageListProps) => {
   const { messages } = useMessageList()

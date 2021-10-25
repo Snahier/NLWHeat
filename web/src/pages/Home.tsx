@@ -8,11 +8,10 @@ interface PageHomeProps {}
 export const PageHome = ({ ...props }: PageHomeProps) => {
   return (
     <StyledPageHome {...props}>
-      <Main>
-        <LogoImg src={logoImg} alt="logo" />
-        <MessageList />
-      </Main>
-      <LoginBox />
+      <LogoImg src={logoImg} alt="logo" />
+      <StyledMessageList />
+
+      <LoginBox style={{ gridArea: "aside" }} />
     </StyledPageHome>
   )
 }
@@ -23,32 +22,23 @@ const StyledPageHome = styled.div<StyledPageHomeProps>`
 
   display: grid;
   grid:
-    "main aside"
+    "logo     aside"
+    "messages aside" 1fr
     /41.75rem 28.25rem;
 
   max-width: 1200px;
   min-width: 100vh;
 `
 
-type MainProps = {}
-const Main = styled.main<MainProps>`
-  grid-area: main;
-
-  display: grid;
-  grid:
-    "logo    "
-    "messages" 1fr;
-  align-items: center;
-
-  margin-top: 2rem;
+type StyledMessageListProps = {}
+const StyledMessageList = styled(MessageList)<StyledMessageListProps>`
+  grid-area: messages;
+  align-self: center;
 `
 
 type LogoImgProps = {}
 const LogoImg = styled.img<LogoImgProps>`
   grid-area: logo;
-`
 
-type AsideProps = {}
-const Aside = styled.aside<AsideProps>`
-  grid-area: aside;
+  margin-top: 2rem;
 `
