@@ -1,6 +1,7 @@
+import { HTMLAttributes } from "react"
 import styled, { css } from "styled-components"
 
-interface AvatarProps {
+interface AvatarProps extends HTMLAttributes<HTMLDivElement> {
   src: string
   alt?: string
 }
@@ -29,8 +30,8 @@ const StyledAvatar = styled.div<StyledAvatarProps>`
 type ImageProps = {}
 const Image = styled.img<ImageProps>`
   ${({ theme }) => css`
-    width: 2.25rem;
-    height: 2.25rem;
+    width: calc(100% - 10%);
+    height: calc(100% - 10%);
 
     border: 0.25rem solid ${theme.background};
     border-radius: 50%;
