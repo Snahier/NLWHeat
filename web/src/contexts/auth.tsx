@@ -59,5 +59,18 @@ export const AuthProvider = (props: AuthProviderProps) => {
     }
   }, [])
 
+  useEffect(() => {
+    ;(async () => {
+      const token = localStorage.getItem("@dowhile:token")
+
+      if (token) {
+        api.defaults.headers.common.authorization = `Bearer ${token}`
+
+        const { data: user } = await api.get<IUser>("/profile")
+        setUser(user)
+      }
+    })()
+  }, [])
+
   return <AuthContext.Provider value={{ signInUrl, user }}>{props.children}</AuthContext.Provider>
 }
