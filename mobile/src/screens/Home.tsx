@@ -19,7 +19,7 @@ const StyledHome = styled(View)<StyledHomeProps>`
     justify-content: center;
     align-items: center;
 
-    background: ${theme.blackPrimary};
+    background: ${theme.blackSecondary};
   `}
 `
 
