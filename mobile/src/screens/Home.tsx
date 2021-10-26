@@ -14,32 +14,34 @@ export const Home = ({ ...props }: HomeProps) => {
   const { isSigningIn, user } = useContext(AuthContext)
 
   return (
-    <StyledHome {...props} behavior={Platform.OS === "ios" ? "padding" : "height"}>
-      <Header />
-      <MessageList />
-      {!user ? (
-        <LoginButton
-          style={{
-            margin: 20,
-            marginBottom: getBottomSpace() + 32,
-          }}
-          loading={isSigningIn}
-        />
-      ) : (
-        <SendMessageForm
-          style={{
-            marginBottom: getBottomSpace(),
-            paddingTop: 16,
-            paddingHorizontal: 24,
-          }}
-        />
-      )}
-    </StyledHome>
+    <KeyboardAvoidingView behavior={Platform.OS === "ios" ? "padding" : "height"} style={{ flex: 1 }}>
+      <StyledHome {...props}>
+        <Header />
+        <MessageList />
+        {!user ? (
+          <LoginButton
+            style={{
+              margin: 20,
+              marginBottom: getBottomSpace() + 32,
+            }}
+            loading={isSigningIn}
+          />
+        ) : (
+          <SendMessageForm
+            style={{
+              marginBottom: getBottomSpace(),
+              paddingTop: 16,
+              paddingHorizontal: 24,
+            }}
+          />
+        )}
+      </StyledHome>
+    </KeyboardAvoidingView>
   )
 }
 
 type StyledHomeProps = {}
-const StyledHome = styled(KeyboardAvoidingView)<StyledHomeProps>`
+const StyledHome = styled(View)<StyledHomeProps>`
   ${({ theme }) => css`
     flex: 1;
     padding-top: ${getStatusBarHeight() + 17}px;
