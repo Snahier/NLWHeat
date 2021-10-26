@@ -1,6 +1,7 @@
 import { Header } from "@components/Header"
+import { MessageList } from "@components/MessageList"
 import React from "react"
-import { Text, View } from "react-native"
+import { View } from "react-native"
 import { getStatusBarHeight } from "react-native-iphone-x-helper"
 import styled, { css } from "styled-components"
 
@@ -10,6 +11,7 @@ export const Home = ({ ...props }: HomeProps) => {
   return (
     <StyledHome {...props}>
       <Header />
+      <MessageList />
     </StyledHome>
   )
 }
