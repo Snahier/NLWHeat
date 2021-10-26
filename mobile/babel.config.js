@@ -10,6 +10,7 @@ module.exports = function (api) {
           extensions: [".ios.ts", ".android.ts", ".ts", ".ios.tsx", ".android.tsx", ".jsx", ".js", ".json"],
           alias: {
             "@screens": "./src/screens",
+            "@styles": "./src/styles",
             "@components": "./src/components",
             "@assets": "./assets",
           },
