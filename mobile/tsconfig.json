@@ -7,7 +7,9 @@
       "@screens/*": ["screens/*"],
       "@styles/*": ["styles/*"],
       "@components/*": ["components/*"],
-      "@assets/*": ["assets/*"]
+      "@assets/*": ["assets/*"],
+      "@contexts/*": ["contexts/*"],
+      "@services/*": ["services/*"]
     }
   }
 }

@@ -1,7 +1,8 @@
-import React from "react"
+import React, { useContext } from "react"
 import { ActivityIndicator, Text, TouchableOpacity, TouchableOpacityProps } from "react-native"
 import styled, { css, useTheme } from "styled-components"
 import { AntDesign } from "@expo/vector-icons"
+import { AuthContext } from "@contexts/auth"
 
 interface LoginButtonProps extends TouchableOpacityProps {
   loading?: boolean
@@ -9,9 +10,10 @@ interface LoginButtonProps extends TouchableOpacityProps {
 
 export const LoginButton = ({ loading = false, ...props }: LoginButtonProps) => {
   const theme = useTheme()
+  const { signIn } = useContext(AuthContext)
 
   return (
-    <StyledLoginButton {...props} activeOpacity={0.7} disabled={loading}>
+    <StyledLoginButton {...props} activeOpacity={0.7} disabled={loading} onPress={signIn}>
       {loading ? (
         <ActivityIndicator color={theme.blackPrimary} size={24} />
       ) : (

@@ -1,3 +1,4 @@
+import { AuthProvider } from "@contexts/auth"
 import { Roboto_400Regular, Roboto_700Bold } from "@expo-google-fonts/roboto"
 import { Home } from "@screens/Home"
 import { defaultTheme } from "@styles/theme"
@@ -15,9 +16,11 @@ export default function App() {
 
   if (!areFontsLoaded) return <AppLoading />
   return (
-    <ThemeProvider theme={defaultTheme}>
-      <StatusBar style="light" />
-      <Home />
-    </ThemeProvider>
+    <AuthProvider>
+      <ThemeProvider theme={defaultTheme}>
+        <StatusBar style="light" />
+        <Home />
+      </ThemeProvider>
+    </AuthProvider>
   )
 }

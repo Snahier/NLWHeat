@@ -1,21 +1,27 @@
 import LogoSvg from "@assets/logo.svg"
 import { Avatar } from "@components/Avatar"
-import React from "react"
+import { AuthContext } from "@contexts/auth"
+import React, { useContext } from "react"
 import { Text, TouchableOpacity, View } from "react-native"
 import styled, { css } from "styled-components"
 
 interface HeaderProps {}
 
 export const Header = ({ ...props }: HeaderProps) => {
+  const { user, signOut } = useContext(AuthContext)
+
   return (
     <StyledHeader {...props}>
       <LogoSvg />
 
       <ProfileWrapper>
-        <LogOutButton>
-          <LogOutText>Sair</LogOutText>
-        </LogOutButton>
-        <Avatar />
+        {user && (
+          <LogOutButton onPress={signOut}>
+            <LogOutText>Sair</LogOutText>
+          </LogOutButton>
+        )}
+
+        <Avatar imageUri={user?.avatar_url} />
       </ProfileWrapper>
     </StyledHeader>
   )
