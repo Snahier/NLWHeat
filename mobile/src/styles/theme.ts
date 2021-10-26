@@ -16,7 +16,9 @@ export const defaultTheme = {
   grayQuaternary: "#29292E",
 
   fonts: {
-    regular: 'Roboto_400Regular',
-    bold: 'Roboto_700Bold',
+    roboto: {
+      regular: 'Roboto_400Regular',
+      bold: 'Roboto_700Bold',
+    }
   }
 }
