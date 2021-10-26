@@ -1,4 +1,5 @@
 import { Header } from "@components/Header"
+import { LoginButton } from "@components/LoginButton"
 import { MessageList } from "@components/MessageList"
 import React from "react"
 import { View } from "react-native"
@@ -12,6 +13,12 @@ export const Home = ({ ...props }: HomeProps) => {
     <StyledHome {...props}>
       <Header />
       <MessageList />
+      <LoginButton
+        style={{
+          margin: 20,
+          marginBottom: 32,
+        }}
+      />
     </StyledHome>
   )
 }
