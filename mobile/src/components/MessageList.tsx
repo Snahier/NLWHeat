@@ -3,6 +3,7 @@ import { api } from "@services/api"
 import React, { useEffect, useState } from "react"
 import { FlatList, ScrollView, View } from "react-native"
 import styled from "styled-components"
+import io from "socket.io-client"
 
 type IUser = {
   id: string
@@ -16,6 +17,13 @@ type IMessage = {
   user: IUser
 }
 
+let messagesQueue: IMessage[] = []
+
+const socket = io(String(api.defaults.baseURL))
+socket.on("new_message", (newMessage) => {
+  messagesQueue.push(newMessage)
+})
+
 interface MessageListProps {}
 
 export const MessageList = ({ ...props }: MessageListProps) => {
@@ -26,6 +34,17 @@ export const MessageList = ({ ...props }: MessageListProps) => {
       const { data } = await api.get<IMessage[]>("/messages/last3")
       setMessages(data)
     })()
+  }, [])
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      if (messagesQueue.length > 0) {
+        setMessages((prev) => [messagesQueue[0], prev[0], prev[1]].filter(Boolean))
+        messagesQueue.shift()
+      }
+    }, 3000)
+
+    return () => clearInterval(timer)
   }, [])
 
   return (
