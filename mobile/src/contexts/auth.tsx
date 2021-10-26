@@ -58,7 +58,7 @@ export const AuthProvider = (props: AuthProviderProps) => {
 
         api.defaults.headers.common["Authorization"] = `Bearer ${token}`
         await AsyncStorage.setItem("@nlwheat:user", JSON.stringify(user))
-        await AsyncStorage.setItem("@nlwheat:token", JSON.stringify(token))
+        await AsyncStorage.setItem("@nlwheat:token", token)
 
         setUser(user)
       }

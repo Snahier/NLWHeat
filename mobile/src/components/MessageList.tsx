@@ -1,11 +1,33 @@
 import { Message } from "@components/Message"
-import React from "react"
-import { ScrollView, View } from "react-native"
+import { api } from "@services/api"
+import React, { useEffect, useState } from "react"
+import { FlatList, ScrollView, View } from "react-native"
 import styled from "styled-components"
+
+type IUser = {
+  id: string
+  avatar_url: string
+  name: string
+}
+
+type IMessage = {
+  id: string
+  text: string
+  user: IUser
+}
 
 interface MessageListProps {}
 
 export const MessageList = ({ ...props }: MessageListProps) => {
+  const [messages, setMessages] = useState<IMessage[]>([])
+
+  useEffect(() => {
+    ;(async () => {
+      const { data } = await api.get<IMessage[]>("/messages/last3")
+      setMessages(data)
+    })()
+  }, [])
+
   return (
     <StyledMessageList
       {...props}
@@ -14,11 +36,12 @@ export const MessageList = ({ ...props }: MessageListProps) => {
         justifyContent: "center",
       }}
     >
-      <Message text="message 1" user={{ name: "Snahier" }} />
-      <Spacing />
-      <Message text="message 1" user={{ name: "Snahier" }} />
-      <Spacing />
-      <Message text="message 1" user={{ name: "Snahier" }} />
+      {messages.map((message) => (
+        <React.Fragment key={message.id}>
+          <Message text={message.text} user={message.user} />
+          <Spacing key={`message-${message.id}-spacing`} />
+        </React.Fragment>
+      ))}
     </StyledMessageList>
   )
 }

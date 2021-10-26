@@ -1,5 +1,6 @@
+import { api } from "@services/api"
 import React, { useState } from "react"
-import { Text, TextInput, TouchableOpacity, View, ViewProps } from "react-native"
+import { Alert, Keyboard, Text, TextInput, TouchableOpacity, View, ViewProps } from "react-native"
 import { getBottomSpace } from "react-native-iphone-x-helper"
 import styled, { css, useTheme } from "styled-components"
 
@@ -10,6 +11,22 @@ export const SendMessageForm = ({ ...props }: SendMessageFormProps) => {
 
   const [message, setMessage] = useState("")
   const [isSendingMessage, setIsSendingMessage] = useState(false)
+
+  const handleSubmit = () => {
+    const formattedMessage = message.trim()
+
+    if (formattedMessage.length > 0) {
+      setIsSendingMessage(true)
+      api.post("/messages", { message: formattedMessage })
+
+      setMessage("")
+      Keyboard.dismiss()
+      setIsSendingMessage(false)
+      Alert.alert("Mensagem enviada")
+    } else {
+      Alert.alert("Escreva a mensagem para enviar")
+    }
+  }
 
   return (
     <StyledSendMessageForm {...props}>
@@ -25,7 +42,7 @@ export const SendMessageForm = ({ ...props }: SendMessageFormProps) => {
         editable={!isSendingMessage}
       />
 
-      <SendMessageButton>
+      <SendMessageButton onPress={handleSubmit}>
         <ButtonText>Enviar mensagem</ButtonText>
       </SendMessageButton>
     </StyledSendMessageForm>
