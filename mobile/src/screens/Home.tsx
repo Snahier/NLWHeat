@@ -19,14 +19,14 @@ const StyledHome = styled(View)<StyledHomeProps>`
     justify-content: center;
     align-items: center;
 
-    background: ${theme.background};
+    background: ${theme.blackPrimary};
   `}
 `
 
 type StyledTextProps = {}
 const StyledText = styled(Text)<StyledTextProps>`
   ${({ theme }) => css`
-    color: ${theme.text};
+    color: ${theme.grayTertiary};
     font-size: 64px;
   `};
 `

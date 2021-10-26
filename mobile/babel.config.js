@@ -12,7 +12,7 @@ module.exports = function (api) {
             "@screens": "./src/screens",
             "@styles": "./src/styles",
             "@components": "./src/components",
-            "@assets": "./assets",
+            "@assets": "./src/assets",
           },
         },
       ],
